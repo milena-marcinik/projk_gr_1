@@ -1,6 +1,7 @@
 <h1>Create a new user</h1>
 {% load crispy_forms_tags %}
 {% block content %}
+    {% if request.user.is_superuser %}
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
@@ -12,10 +13,15 @@
                 <button class="btn btn-outline-info" type="submit">Add a user</button>
             </div>
         </form>
+
+    </div>
+    {% else %}
+    <h4>You cannot add a new user because you are not an admin</h4>
         <div class="border-top pt-3">
             <small class="text-muted">
+                Back to <a class="ml-2" href="#">home page </a><br>
                 Do you want to log in? <a class="ml-2" href="{% url 'login' %}">Sign in</a>
             </small>
         </div>
-    </div>
+    {% endif %}
 {% endblock content %}
