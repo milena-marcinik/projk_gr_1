@@ -124,5 +124,5 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'login'  # tutaj wpisac nazwę strony głównej, jakieś home
+LOGIN_REDIRECT_URL = 'main_manage_library'  # do sprawdzenia czy dziala, wczesneiej bylo testowo 'login'
 LOGIN_URL = 'login'

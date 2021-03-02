@@ -1,4 +1,4 @@
-<h1>Create a new user</h1>
+{% extends "manage_library/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
     {% if request.user.is_superuser %}
