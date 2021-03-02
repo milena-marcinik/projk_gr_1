@@ -8,6 +8,12 @@
 ...
 
 {% else %}
+
+    <h5></h5>
+    <div class="border-top pt3">
+             <a class="ml-2" href="{% url 'login' %}">Log in to enter the library</a>
+    </div>
+
 {% endif %}
 
 {% endblock content %}
