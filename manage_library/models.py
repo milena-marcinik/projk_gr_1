@@ -27,7 +27,7 @@ class Book(models.Model):
             RegexValidator(regex='^[0-9]{13}$', message="Wrong ISBN length"),
     ])
     note = models.TextField()
-    cover = models.ImageField()
+    cover = models.ImageField(upload_to = "covers", default="covers/default_cover.jpg")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     shelf = models.ForeignKey(Shelf, on_delete=models.SET_NULL, null=True)
     lending_status = models.CharField(max_length=4, choices=[
