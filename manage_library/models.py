@@ -5,19 +5,27 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=20, unique=True)
 
+    def __repr__(self):
+        return f"id: {self.id} name: {self.name}"
 
 class Room(models.Model):
     name = models.CharField(max_length=20, unique=True)
 
+    def __repr__(self):
+        return f"id: {self.id} name: {self.name}"
 
 class Bookcase(models.Model):
     name = models.CharField(max_length=20, unique=True)
     room = models.ForeignKey(Room, max_length=130, on_delete=models.DO_NOTHING)
 
+    def __repr__(self):
+        return f"id: {self.id} name: {self.name} room.name: {self.room.name}"
 
 class Shelf(models.Model):
     bookcase = models.ForeignKey(Bookcase, max_length=20, on_delete=models.DO_NOTHING)
 
+    def __repr__(self):
+        return f"id: {self.id} bookcase.id: {self.bookcase.id}"
 
 class Book(models.Model):
     title = models.CharField(max_length=180, blank=False)
@@ -34,3 +42,6 @@ class Book(models.Model):
         ("lent", "lent",),
         ("free", "free",),
     ], default="free")
+
+    def __repr__(self):
+        return f"id: {self.id} title: {self.title}"
