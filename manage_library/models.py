@@ -12,25 +12,25 @@ class Room(models.Model):
 
 class Bookcase(models.Model):
     name = models.CharField(max_length=20)
-    room = models.ForeignKey(Room, max_length=130)  # TODO trzeba jeszcze on_delete
+    room = models.ForeignKey(Room, max_length=130, on_delete=models.DO_NOTHING)
 
 
 class Shelf(models.Model):
-    bookcase = models.ForeignKey(Bookcase, max_length=20)
+    bookcase = models.ForeignKey(Bookcase, max_length=20, on_delete=models.DO_NOTHING)
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=180, required=True, blank=False)
-    author = models.CharField(max_length=100, required=True, blank=False)
-    isbn_number = models.CharField(validator=[
+    title = models.CharField(max_length=180, blank=False)
+    author = models.CharField(max_length=100, blank=False)
+    isbn_number = models.CharField(validators=[
         RegexValidator(regex='^[0-9]{10}$', message="Wrong ISBN length"),
         RegexValidator(regex='^[0-9]{13}$', message="Wrong ISBN length"),
     ])
     note = models.TextField()
     cover = models.ImageField()
-    category = models.ForeignKey(Category, models.SET_NULL)  # TODO trzeba jeszcze on_delete
-    shelf = models.ForeignKey(Shelf, models.SET_NULL)  # TODO trzeba jeszcze on_delete
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    shelf = models.ForeignKey(Shelf, on_delete=models.SET_NULL, null=True)
     lending_status = models.CharField(choices=[
-        (lent, "lent",),
-        (free, "free"),
-    ], default=free)
+        ("lent", "lent",),
+        ("free", "free",),
+    ], default="free")
