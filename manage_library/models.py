@@ -3,15 +3,15 @@ from django.db import models
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
 
 
 class Room(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
 
 
 class Bookcase(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, unique=True)
     room = models.ForeignKey(Room, max_length=130, on_delete=models.DO_NOTHING)
 
 
