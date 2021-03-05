@@ -1,0 +1,30 @@
+[
+  {
+    "name": "by the window",
+    "room": "living room"
+  },
+    {
+    "name": "against the wall",
+    "room": "living room"
+  },
+    {
+    "name": "Bookshelf 1",
+    "room": "office"
+  },
+    {
+    "name": "Bookshelf 2",
+    "room": "office"
+  },
+    {
+    "name": "above the desk",
+    "room": "office"
+  },
+    {
+    "name": "at the table",
+    "room": "kitchen"
+  },
+  {
+    "name": "armored cupboard",
+    "room": "cellar"
+  }
+]

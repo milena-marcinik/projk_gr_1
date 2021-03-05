@@ -25,19 +25,13 @@ from manage_library.models import Category, Room, Bookcase, Shelf, Book
 
 ## Ksiazki
 
-Book(
-    title = "Zbrodnia Ikara",
-    author = "Minos Dostojewski",
-    isbn_number = "0123456789",
-    note = "Rogi lekko zadarte. Odbite dno szklanki z kawy na okladce",
-    # Ccover defaultowy
-    category = Category.objects.filter(name="Kryminaly").first(),
-    shelf = Shelf.objects.filter(bookcase__name="Szafa pancerna").first(),
-    # lending_status defaultowy
-).save()
-
-
-
-
-
-
+# Book(
+#     title="Zbrodnia Ikara",
+#     author="Minos Dostojewski",
+#     isbn_number="0123456789",
+#     note="Rogi lekko zadarte. Odbite dno szklanki z kawy na okladce",
+#     # Ccover defaultowy
+#     category=Category.objects.filter(name="Kryminaly").first(),
+#     shelf=Shelf.objects.filter(bookcase__name="Szafa pancerna").first(),
+#     # lending_status defaultowy
+# ).save()
