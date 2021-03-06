@@ -1,0 +1,18 @@
+{% extends "manage_library/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <h1>User List</h1>
+  {% if users_all %}
+  <ul>
+    {% for user in users_all %}
+      <li>
+        <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no users.</p>
+  {% endif %}
+
+{% endblock content %}
