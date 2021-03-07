@@ -25,11 +25,14 @@ class Bookcase(models.Model):
 
 
 class Shelf(models.Model):
-    number = models.TextField(max_length=3)
+    name = models.CharField(max_length=20, default="")
     bookcase = models.ForeignKey(Bookcase, max_length=20, on_delete=models.CASCADE, null=False)
 
+    class Meta:
+        unique_together = [["name", "bookcase"]]
+
     def __repr__(self):
-        return f"number: {self.number} bookcase name: {self.bookcase.name}"
+        return f"id: {self.id} name: {self.name} bookcase: {self.bookcase.name} room: {self.bookcase.room.name}"
 
 
 class Book(models.Model):
@@ -40,10 +43,6 @@ class Book(models.Model):
         RegexValidator(regex='^[0-9]{13}$', message="Wrong ISBN length"),
     ])
     note = models.TextField(default="no note")
-    cover = models.ImageField(upload_to="covers", default="covers/default_cover.jpg")
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
-    bookcase = models.ForeignKey(Bookcase, on_delete=models.CASCADE, null=True)
     shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE, null=True)
     lending_status = models.CharField(max_length=4, choices=[
         ("lent", "lent",),
