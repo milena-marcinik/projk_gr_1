@@ -1,0 +1,41 @@
+{% extends "manage_library/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if request.user.is_superuser %}
+
+        <h1>User List</h1>
+        {% if users_all %}
+            <ul>
+                {% for user in users_all %}
+                    {% if user.is_superuser %}
+                    <!-- continue -->
+                    {% else %}
+                    <div style="padding-bottom: 20px;align-items: center">
+                    <td>
+                        {{ user.username }}
+                        <div class="right">
+                            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'user_delete' user.id %}">Delete</a>
+                        </div><br>
+                    </td>
+                    </div>
+                    {% endif %}
+                {% endfor %}<br>
+            </ul>
+        {% else %}
+            <p>There are no users.</p>
+        {% endif %}
+
+    {% else %}
+        <h4>You cannot see users because you are not an admin</h4>
+        <div class="content">
+            <small class="text-muted">
+                Back to <a class="content-link" style="font-weight:bold" href="{% url 'main_manage_library' %}">home
+                page</a><br>
+                Do you want to <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">log in as
+                admin?</a>
+            </small>
+        </div>
+
+    {% endif %}
+{% endblock content %}

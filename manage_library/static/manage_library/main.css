@@ -150,6 +150,18 @@ a.content-link:hover {
     padding: 15px
 }
 
+.user-delete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right {
+    display: inline-block;
+    float: right;
+    padding-right: 40px;
+    margin-top: -5px;
+}
+
 @media(max-width:768px) {
     #sidebar {
         margin-left: -250px
