@@ -25,14 +25,14 @@ class Bookcase(models.Model):
 
 
 class Shelf(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, default="")
     bookcase = models.ForeignKey(Bookcase, max_length=20, on_delete=models.CASCADE, null=False)
 
     class Meta:
         unique_together = [["name", "bookcase"]]
 
     def __repr__(self):
-        return f"number: {self.number} bookcase name: {self.bookcase.name}"
+        return f"id: {self.id} name: {self.name} bookcase: {self.bookcase.name} room: {self.bookcase.room.name}"
 
 
 class Book(models.Model):
