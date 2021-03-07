@@ -1,82 +1,82 @@
 [
   {
-    "number": 1,
+    "name": "1",
     "bookcase": "by the window"
   },
   {
-    "number": 2,
+    "name": "2",
     "bookcase": "by the window"
   },
   {
-    "number": 3,
+    "name": "3",
     "bookcase": "by the window"
   },
   {
-    "number": 1,
+    "name": "1",
     "bookcase": "against the wall"
   },
   {
-    "number": 2,
+    "name": "2",
     "bookcase": "against the wall"
   },
   {
-    "number": 3,
+    "name": "3",
     "bookcase": "against the wall"
   },
   {
-    "number": 4,
+    "name": "4",
     "bookcase": "against the wall"
   },
     {
-    "number": 1,
+    "name": "1",
     "bookcase": "Bookshelf 1"
   },
   {
-    "number": 2,
+    "name": "2",
     "bookcase": "Bookshelf 1"
   },
   {
-    "number": 1,
+    "name": "1",
     "bookcase": "Bookshelf 2"
   },
   {
-    "number": 2,
+    "name": "2",
     "bookcase": "Bookshelf 2"
   },
   {
-    "number": 3,
+    "name": "3",
     "bookcase": "Bookshelf 2"
   },
   {
-    "number": 4,
+    "name": "4",
     "bookcase": "Bookshelf 2"
   },
     {
-    "number": 1,
+    "name": "1",
     "bookcase": "above the desk"
   },
    {
-    "number": 1,
+    "name": "1",
     "bookcase": "at the table"
   },
   {
-    "number": 2,
+    "name": "2",
     "bookcase": "at the table"
   },
   {
-    "number": 1,
+    "name": "1",
     "bookcase": "armored cupboard"
   },
   {
-    "number": 2,
+    "name": "2",
     "bookcase": "armored cupboard"
   },
   {
-    "number": 3,
+    "name": "3",
     "bookcase": "armored cupboard"
   },
   {
-    "number": 4,
+    "name": "4",
     "bookcase": "armored cupboard"
   }
 ]

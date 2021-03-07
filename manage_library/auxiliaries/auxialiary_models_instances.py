@@ -1,6 +1,7 @@
 import os
 import json
 
+from django.contrib.auth.models import User
 from manage_library.models import Category, Room, Bookcase, Shelf, Book
 
 current_wkd = os.getcwd() + "\manage_library\\auxiliaries\\"
@@ -9,7 +10,8 @@ add_categories = False
 add_rooms = False
 add_bookcases = False
 add_shelves = False
-add_books = True
+add_books = False
+add_users = True
 
 if add_categories:
     with open(current_wkd+"categories.json") as h:
@@ -58,3 +60,12 @@ if add_books:
             #lending_status=
         ).save()
 
+if add_users:
+    with open(current_wkd+"users.json", encoding="utf8") as h:
+        users = json.load(h)
+    for user in users:
+        User(
+            username=user["username"],
+            password=user["password"],
+            is_superuser=user["is_superuser"],
+        ).save()
