@@ -1,6 +1,4 @@
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm, AdminPasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import ListView, DeleteView, UpdateView
@@ -16,7 +14,7 @@ def add_user(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,
-                             f'Account created for {username}!')  # te wiadomosci dodać potem to template BASE jak juz bedzie
+                             f'Account created for {username}!')
             return redirect('login')
     else:
         form = UserAddForm()
@@ -35,14 +33,13 @@ class UserDeleteView(DeleteView):
     success_url = '/users/'
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
     success_url = '/users/'
+    success_message = f'Password has been changed!'
 
     def form_valid(self, form):
         if form.is_valid():
             form.save()
             return super().form_valid(form)
-
-
