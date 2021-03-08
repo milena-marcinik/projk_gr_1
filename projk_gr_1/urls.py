@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from user_panel import views as user_views
-from user_panel.views import UserListView, UserDeleteView
+from user_panel.views import UserListView, UserDeleteView, UserUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('users/', UserListView.as_view(template_name='user_panel/users_all.html'), name='all_users'),
     path('users/<int:pk>/delete/', UserDeleteView.as_view(template_name='user_panel/user_confirm_delete.html'),
          name='user_delete'),
+    path('users/<int:pk>/password/', UserUpdateView.as_view(template_name='user_panel/change_password.html'), name='password'),
     path('login/', auth_views.LoginView.as_view(template_name='user_panel/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='user_panel/logout.html'), name='logout'),
 

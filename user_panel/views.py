@@ -1,11 +1,12 @@
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm, AdminPasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import ListView, DeleteView
+from django.views.generic import ListView, DeleteView, UpdateView
 from django.contrib.auth.models import User
 
-from .forms import UserAddForm
-from .models import UserProfile
+from .forms import UserAddForm, UserUpdateForm
 
 
 def add_user(request):
@@ -32,3 +33,16 @@ class UserListView(ListView):
 class UserDeleteView(DeleteView):
     model = User
     success_url = '/users/'
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    success_url = '/users/'
+
+    def form_valid(self, form):
+        if form.is_valid():
+            form.save()
+            return super().form_valid(form)
+
+

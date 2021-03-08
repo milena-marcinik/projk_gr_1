@@ -16,6 +16,9 @@
                         {{ user.username }}
                         <div class="right">
                             <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'user_delete' user.id %}">Delete</a>
+                        </div>
+                        <div class="right">
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'password' user.id %}">Change password</a>
                         </div><br>
                     </td>
                     </div>
