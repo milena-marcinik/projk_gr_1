@@ -4,21 +4,21 @@
 {% block content %}
     {% if request.user.is_superuser %}
 
-        <h1>User List</h1>
+        <h1>User List</h1><br>
         {% if users_all %}
             <ul>
                 {% for user in users_all %}
                     {% if user.is_superuser %}
                     <!-- continue -->
                     {% else %}
-                    <div style="padding-bottom: 20px;align-items: center">
+                    <div style="padding-bottom: 20px; align-items: center">
                     <td>
                         {{ user.username }}
                         <div class="right">
                             <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'user_delete' user.id %}">Delete</a>
                         </div>
                         <div class="right">
-                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'password' user.id %}">Change password</a>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" style="margin-left: 30px" href="{% url 'password' user.id %}">Change password</a>
                         </div><br>
                     </td>
                     </div>

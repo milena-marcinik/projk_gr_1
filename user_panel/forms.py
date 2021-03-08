@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AdminPasswordChangeForm
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -39,6 +40,12 @@ class UserUpdateForm(forms.ModelForm):
                     self.error_messages['password_mismatch'],
                     code='password_mismatch',
                 )
+            else:
+                try:
+                    password_validation.validate_password(password1, self.instance)
+                except forms.ValidationError as error:
+                    # Method inherited from BaseForm
+                    self.add_error('password1', error)
         return password2
 
     def save(self, commit=True):

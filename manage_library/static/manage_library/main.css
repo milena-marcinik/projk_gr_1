@@ -160,6 +160,7 @@ a.content-link:hover {
     float: right;
     padding-right: 40px;
     margin-top: -5px;
+    padding-left: 40px;
 }
 
 @media(max-width:768px) {
