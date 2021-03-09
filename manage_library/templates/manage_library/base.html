@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>My Library</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{% static 'manage_library/main.css' %}">
+
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript'
+            src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript'>$(document).ready(function () {
+        $("#sidebarCollapse").on('click', function () {
+            $("#sidebar").toggleClass('active');
+        });
+    });</script>
+</head>
+<body oncontextmenu='return false' class='snippet-body'>
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>MY LIBRARY</h3>
+            <hr>
+        </div>
+        <ul class="list-unstyled components">
+            <p>MENU</p>
+            <li><a href="{% url 'main_manage_library' %}">Home</a></li>
+            <li><a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Books</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li><a href="#">All Books</a></li>
+                    <li><a href="#">Add Book</a></li>
+                    <li><a href="#">Remove Book</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Rooms</a></li>
+            <li><a href="#">Bookcases</a></li>
+            <li><a href="#">Shelves</a></li>
+
+            {% if request.user.is_superuser %}
+                        <li><a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Users</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li><a href="{% url 'all_users' %}">All Users</a></li>
+                    <li><a href="{% url 'add_user' %}">Add User</a></li>
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+        <ul class="list-unstyled CTAs">
+            <li><a href="#" class="download">Add new book</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button type="button" id="sidebarCollapse" class="btn btn-info"><i class="fa fa-align-justify"></i></button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'main_manage_library' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        {% if request.user.is_superuser %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'add_user' %}">Add user</a></li>
+                        {% endif %}
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="content-wrapper">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+
+            <div class="line"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

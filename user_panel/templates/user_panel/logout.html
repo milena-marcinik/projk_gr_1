@@ -1,10 +1,11 @@
+{% extends "manage_library/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h2>You have been logged out</h2>
-    <div class="border-top pt3">
+    <div class="content">
+    <h3>You have been logged out</h3>
         <small class="text-muted">
-             <a class="ml-2" href="{% url 'login' %}">Log in again</a>
+             <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">Log in</a> again
         </small>
     </div>
-</div>
+
 {% endblock content %}

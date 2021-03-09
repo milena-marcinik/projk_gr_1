@@ -1,0 +1,17 @@
+[
+  {
+    "username": "Hieronim",
+    "password": "HieronimPass",
+    "is_superuser" : "True"
+  },
+  {
+    "username": "Natalia",
+    "password": "NataliaPass",
+    "is_superuser" : "False"
+  },
+  {
+    "username": "Janek",
+    "password": "JanekPass",
+    "is_superuser" : "False"
+  }
+]

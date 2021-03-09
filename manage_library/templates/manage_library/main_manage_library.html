@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-    <div id="right-menu">
-        <ul>
-            <li> <a href ="{% url 'show-book-collection' %}">Show book collection</a> </li>
-            <li> <a href ="{% url 'add-new-book' %}">Add new book</a> </li>
-            <li> <a href ="{% url 'remove-book' %}">Remove book</a> </li>
-            <li> <a href ="{% url 'add-bookcase' %}">Add bookcase</a> </li>
-        </ul>
+{% extends "manage_library/base.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h5>Tu moze byc np. 10 ostatnich ksiazek z okladka:</h5>
+- ksiazka 1 <br>
+- ksiazka 2 <br>
+...
+
+{% else %}
+
+    <h5></h5>
+    <div class="content">
+             <a class="content-link" href="{% url 'login' %}">Log in</a> to enter the library
     </div>
-</html>
+
+{% endif %}
+
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "1",
+    "bookcase": "by the window"
+  },
+  {
+    "name": "2",
+    "bookcase": "by the window"
+  },
+  {
+    "name": "3",
+    "bookcase": "by the window"
+  },
+  {
+    "name": "1",
+    "bookcase": "against the wall"
+  },
+  {
+    "name": "2",
+    "bookcase": "against the wall"
+  },
+  {
+    "name": "3",
+    "bookcase": "against the wall"
+  },
+  {
+    "name": "4",
+    "bookcase": "against the wall"
+  },
+    {
+    "name": "1",
+    "bookcase": "Bookshelf 1"
+  },
+  {
+    "name": "2",
+    "bookcase": "Bookshelf 1"
+  },
+  {
+    "name": "1",
+    "bookcase": "Bookshelf 2"
+  },
+  {
+    "name": "2",
+    "bookcase": "Bookshelf 2"
+  },
+  {
+    "name": "3",
+    "bookcase": "Bookshelf 2"
+  },
+  {
+    "name": "4",
+    "bookcase": "Bookshelf 2"
+  },
+    {
+    "name": "1",
+    "bookcase": "above the desk"
+  },
+   {
+    "name": "1",
+    "bookcase": "at the table"
+  },
+  {
+    "name": "2",
+    "bookcase": "at the table"
+  },
+  {
+    "name": "1",
+    "bookcase": "armored cupboard"
+  },
+  {
+    "name": "2",
+    "bookcase": "armored cupboard"
+  },
+  {
+    "name": "3",
+    "bookcase": "armored cupboard"
+  },
+  {
+    "name": "4",
+    "bookcase": "armored cupboard"
+  }
+]
