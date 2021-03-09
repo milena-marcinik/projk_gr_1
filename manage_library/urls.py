@@ -9,5 +9,9 @@ urlpatterns = [
     path('a/', views.main_manage_library, name="show-book-collection"),
     path('b/', views.main_manage_library, name="add-new-book"),
     path('c/', views.main_manage_library, name="remove-book"),
-    path('d/', views.main_manage_library, name="add-bookcase"),
+    path('room/', views.main_manage_library, name="all-rooms"),
+    path('d/', views.main_manage_library, name="add-room"),
+    path('e/', views.main_manage_library, name="add-bookcase"),
+    path('f/', views.main_manage_library, name="add-shelf"),
+
 ]
