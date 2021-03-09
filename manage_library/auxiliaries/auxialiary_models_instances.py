@@ -11,7 +11,7 @@ add_rooms = False
 add_bookcases = False
 add_shelves = False
 add_books = False
-add_users = True
+add_users = False
 
 if add_categories:
     with open(current_wkd+"categories.json") as h:
@@ -64,8 +64,6 @@ if add_users:
     with open(current_wkd+"users.json", encoding="utf8") as h:
         users = json.load(h)
     for user in users:
-        User(
-            username=user["username"],
-            password=user["password"],
-            is_superuser=user["is_superuser"],
-        ).save()
+        user_in_loop = User(username=user["username"], is_superuser=user["is_superuser"],)
+        user_in_loop.set_password(user["password"])
+        user_in_loop.save()
