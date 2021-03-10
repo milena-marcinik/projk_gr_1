@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 from django.views.generic import ListView, CreateView
 
-from manage_library.models import Room, Bookcase
+from manage_library.models import Room, Bookcase, Shelf
 
 
 # TODO decorator of log in
@@ -45,3 +45,18 @@ class BookcaseCreateView(CreateView):
         return super(BookcaseCreateView, self).form_valid(form)
 
 
+class ShelfListView(ListView):
+    model = Shelf
+    context_object_name = 'shelves_all'  # your own name for the list as a template variable
+    queryset = Shelf.objects.all()
+    template_name = 'manage_library/shelf_all.html'  # Specify your own template name/location
+
+
+class ShelfCreateView(CreateView):
+    model = Shelf
+    fields = ['room', 'bookcase', 'name']
+    success_url = '/shelf/'
+
+    def form_valid(self, form):
+        form.instance.bookcase = Room.objects.filter(id=self.kwargs.get('pk'))
+        return super(ShelfCreateView, self).form_valid(form)

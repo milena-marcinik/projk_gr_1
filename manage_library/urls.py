@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import RoomListView, RoomCreateView, BookcaseListView, BookcaseCreateView
+from .views import RoomListView, RoomCreateView, BookcaseListView, BookcaseCreateView, ShelfListView, ShelfCreateView
 
 urlpatterns = [
     path('', views.main_manage_library, name="main_manage_library"),
@@ -15,6 +15,7 @@ urlpatterns = [
     path('bookcase/', BookcaseListView.as_view(template_name='manage_library/bookcase_all.html'), name="all-bookcases"),
     path('addbookcase/', BookcaseCreateView.as_view(template_name='manage_library/add_bookcase.html'),
          name="add-bookcase"),
-    path('f/', views.main_manage_library, name="add-shelf"),
+    path('shelf/', ShelfListView.as_view(template_name='manage_library/shelf_all.html'), name="all-shelves"),
+    path('addshelf/', ShelfCreateView.as_view(template_name='manage_library/add_shelf.html'), name="add-shelf"),
 
 ]
