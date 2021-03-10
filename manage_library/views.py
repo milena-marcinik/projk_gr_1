@@ -1,9 +1,11 @@
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from django.views.generic import ListView, CreateView
 
+from manage_library.forms import ShelfCreateForm
 from manage_library.models import Room, Bookcase, Shelf
 
 
@@ -20,10 +22,11 @@ class RoomListView(ListView):
     template_name = 'manage_library/rooms_all.html'  # Specify your own template name/location
 
 
-class RoomCreateView(CreateView):
+class RoomCreateView(SuccessMessageMixin, CreateView):
     model = Room
     fields = ['name']
     success_url = '/room/'
+    success_message = "New room created!"
 
     def form_valid(self, form):
         return super().form_valid(form)
@@ -36,10 +39,11 @@ class BookcaseListView(ListView):
     template_name = 'manage_library/bookcase_all.html'  # Specify your own template name/location
 
 
-class BookcaseCreateView(CreateView):
+class BookcaseCreateView(SuccessMessageMixin, CreateView):
     model = Bookcase
     fields = ['room', 'name']
     success_url = '/bookcase/'
+    success_message = "New bookcase created!"
 
     def form_valid(self, form):
         return super(BookcaseCreateView, self).form_valid(form)
@@ -52,11 +56,10 @@ class ShelfListView(ListView):
     template_name = 'manage_library/shelf_all.html'  # Specify your own template name/location
 
 
-class ShelfCreateView(CreateView):
-    model = Shelf
-    fields = ['room', 'bookcase', 'name']
+class ShelfCreateView(SuccessMessageMixin, CreateView):
+    form_class = ShelfCreateForm
     success_url = '/shelf/'
+    success_message = "New shelf created!"
 
     def form_valid(self, form):
-        form.instance.bookcase = Room.objects.filter(id=self.kwargs.get('pk'))
         return super(ShelfCreateView, self).form_valid(form)
