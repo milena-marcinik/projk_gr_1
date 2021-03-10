@@ -8,12 +8,18 @@ class Category(models.Model):
     def __repr__(self):
         return f"name: {self.name}"
 
+    def __str__(self):
+        return self.name
+
 
 class Room(models.Model):
     name = models.CharField(max_length=20, unique=True, null=False)
 
     def __repr__(self):
         return f"name: {self.name}"
+
+    def __str__(self):
+        return self.name
 
 
 class Bookcase(models.Model):
@@ -22,6 +28,9 @@ class Bookcase(models.Model):
 
     def __repr__(self):
         return f"name: {self.name} room.name: {self.room.name}"
+
+    def __str__(self):
+        return self.name
 
 
 class Shelf(models.Model):
@@ -33,6 +42,9 @@ class Shelf(models.Model):
 
     def __repr__(self):
         return f"id: {self.id} name: {self.name} bookcase: {self.bookcase.name} room: {self.bookcase.room.name}"
+
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):

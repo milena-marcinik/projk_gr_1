@@ -1,0 +1,28 @@
+{% extends "manage_library/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if request.user.is_superuser %}
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Create a new bookcase</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Add a bookcase</button>
+                </div>
+            </form>
+
+        </div>
+    {% else %}
+        <h4>You cannot add new bookcase because you are not an admin</h4>
+        <div class="content">
+            <small class="text-muted">
+                Back to <a class="content-link" style="font-weight:bold" href="{% url 'main_manage_library' %}">home
+                page</a><br>
+                Do you want to <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">log in?</a>
+            </small>
+        </div>
+    {% endif %}
+{% endblock content %}

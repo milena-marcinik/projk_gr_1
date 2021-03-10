@@ -37,7 +37,7 @@
                 </ul>
             </li>
             <li><a href="{% url 'all-rooms' %}">Rooms</a></li>
-            <li><a href="#">Bookcases</a></li>
+            <li><a href="{% url 'all-bookcases' %}">Bookcases</a></li>
             <li><a href="#">Shelves</a></li>
 
             {% if request.user.is_superuser %}
