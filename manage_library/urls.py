@@ -8,13 +8,12 @@ from .views import RoomListView, RoomCreateView, BookcaseListView, BookcaseCreat
 
 urlpatterns = [
     path('', views.main_manage_library, name="main_manage_library"),
-    #  wpisalam pojedyncze literki w poniższych ścieżkach, bo chciałam mieć tylko jedną pustą ''
-    #  te ponizej do zmiany potem
     path('listallbooks/', BookListView.as_view(template_name="manage_library/books_all.html"), name="list-all-books"),
     path('detailsbook/<int:pk>', DetailView.as_view(model=Book), name="show-book-details"),
     path('changebookstatus/<int:pk>', views.change_book_status, name="change-book-status"),
     path('addnewbook/', BookAddView.as_view(template_name="manage_library/add_book.html"), name="add-new-book"),
-    path('listallbooks/<int:pk>/delete/', BooksDeleteView.as_view(template_name='manage_library/book_confirm_delete.html'),
+    path('listallbooks/<int:pk>/delete/',
+         BooksDeleteView.as_view(template_name='manage_library/book_confirm_delete.html'),
          name='book_delete'),
     path('room/', RoomListView.as_view(template_name='manage_library/rooms_all.html'), name="all-rooms"),
     path('addroom/', RoomCreateView.as_view(template_name='manage_library/add_room.html'), name="add-room"),
