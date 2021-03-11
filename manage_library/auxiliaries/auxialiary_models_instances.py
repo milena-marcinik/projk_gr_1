@@ -4,14 +4,14 @@ import json
 from django.contrib.auth.models import User
 from manage_library.models import Category, Room, Bookcase, Shelf, Book
 
-current_wkd = os.getcwd() + "\manage_library\\auxiliaries\\"
+current_wkd = os.getcwd() + "/manage_library/auxiliaries/"
 
-add_categories = False
-add_rooms = False
-add_bookcases = False
-add_shelves = False
-add_books = False
-add_users = False
+add_categories = True
+add_rooms = True
+add_bookcases = True
+add_shelves = True
+add_books = True
+add_users = True
 
 if add_categories:
     with open(current_wkd+"categories.json") as h:
