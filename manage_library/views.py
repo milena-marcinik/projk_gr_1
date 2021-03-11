@@ -3,7 +3,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 
 from manage_library.forms import ShelfCreateForm, BookAddForm
 from manage_library.models import Room, Bookcase, Shelf, Book
@@ -67,7 +67,7 @@ class ShelfCreateView(SuccessMessageMixin, CreateView):
 class BookAddView(SuccessMessageMixin, CreateView):
     form_class = BookAddForm
     success_url = "/addnewbook/"
-    success_message = "New book added in library"
+    success_message = "New book added to library"
 
     def form_valid(self, form):
         return super().form_valid(form)
@@ -76,6 +76,11 @@ class BookListView(ListView):
     model = Book
     context_object_name = 'books_all'
     queryset = Book.objects.all()
+
+class BooksDeleteView(SuccessMessageMixin, DeleteView):
+    model = Book
+    success_message = "Book removed"
+    success_url = '/listallbooks/'
 
 
 def change_book_status(request, pk):

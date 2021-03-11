@@ -1,0 +1,18 @@
+{% extends "manage_library/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content">
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Book</legend>
+                <h2>Are you sure you want to delete <b>{{ book.title }} </b> by <i>{{ book.author }}</i>?</h2>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit" >Yes, delete</button>
+                <a class="btn btn-outline-secondary" href="{% url 'list-all-books' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
