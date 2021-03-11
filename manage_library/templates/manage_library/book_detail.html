@@ -10,9 +10,11 @@
                 <li>Author: {{ object.author }}</li>
                 <li>ISBN: {{ object.isbn_number }}</li>
                 <li>Note: {{ object.note}}</li>
-                <li>Category {{ object.category.name }}</li>
-                <li>Shelf: {{ object.shelf }}</li>
-                <li>Lending status: {{ object.lending_status }}</li>
+                <li>Category {{ object.category }}</li>
+                <li>
+                    <a href ="{% url 'change-book-shelf' object.id %}" style="color:green">Shelf: {{ object.shelf }}</a>
+                </li>
+                <li>Lending status: {{ object.lending_status }} </li>
                 <img src="{{ object.cover.url }}" />
             </ul>
         </div>

@@ -3,9 +3,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView,UpdateView
 
-from manage_library.forms import ShelfCreateForm, BookAddForm
+from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfForm
 from manage_library.models import Room, Bookcase, Shelf, Book
 
 
@@ -92,3 +92,9 @@ def change_book_status(request, pk):
     picked_book.save()
 
     return redirect(request.META['HTTP_REFERER'])
+
+class ChangeBookShelf(UpdateView):
+    model = Book
+    form_class = BookChangeShelfForm
+    template_name = "manage_library/change_book_shelf.html"
+    success_url = "/listallbooks/"
