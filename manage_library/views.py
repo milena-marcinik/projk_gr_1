@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 from django.views.generic import ListView, CreateView
 
-from manage_library.forms import ShelfCreateForm
+from manage_library.forms import ShelfCreateForm, BookAddForm
 from manage_library.models import Room, Bookcase, Shelf
 
 
@@ -63,3 +63,11 @@ class ShelfCreateView(SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         return super(ShelfCreateView, self).form_valid(form)
+
+class BookAddView(SuccessMessageMixin, CreateView):
+    form_class = BookAddForm
+    success_url = "/addnewbook/"
+    success_message = "New book added in library"
+
+    def form_valid(self, form):
+        return super().form_valid(form)

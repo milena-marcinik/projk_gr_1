@@ -44,19 +44,19 @@ class Shelf(models.Model):
         return f"id: {self.id} name: {self.name} bookcase: {self.bookcase.name} room: {self.bookcase.room.name}"
 
     def __str__(self):
-        return f"{self.bookcase.name}, {self.name}"
+        return f"id:{self.id} : {self.name} : {self.bookcase.name} : {self.bookcase.room.name}"
 
 
 class Book(models.Model):
     title = models.CharField(max_length=180, blank=False)
     author = models.CharField(max_length=100, blank=False)
     isbn_number = models.CharField(max_length=13, validators=[
-        RegexValidator(regex='^[0-9]{10}$', message="Wrong ISBN length"),
-        RegexValidator(regex='^[0-9]{13}$', message="Wrong ISBN length"),
-    ])
+        RegexValidator(regex='^[0-9]{10}$|^[0-9]{13}$', message="Wrong ISBN length"),
+    ], blank=True)
     note = models.TextField(default="no note")
+    cover = models.ImageField(upload_to="covers", default="covers/default_cover.jpg")
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE, null=True)
+    shelf = models.ForeignKey(Shelf, on_delete=models.SET_NULL, null=True, blank=True)
     lending_status = models.CharField(max_length=4, choices=[
         ("lent", "lent",),
         ("free", "free",),

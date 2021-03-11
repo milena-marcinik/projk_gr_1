@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from manage_library.models import Shelf
+from manage_library.models import Shelf, Book
 
 
 class ShelfCreateForm(ModelForm):
@@ -11,3 +11,10 @@ class ShelfCreateForm(ModelForm):
             'bookcase': "Room and Bookcase",
             'name': "Shelf name"
         }
+
+
+
+class BookAddForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = "__all__"
