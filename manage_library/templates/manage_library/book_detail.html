@@ -1,0 +1,21 @@
+{% extends "manage_library/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <h1>Book details</h1><br>
+        <div style="padding-bottom: 20px; align-items: center">
+            <ul>
+                <li>Title: {{ object.title }}</li>
+                <li>Author: {{ object.author }}</li>
+                <li>ISBN: {{ object.isbn_number }}</li>
+                <li>Note: {{ object.note}}</li>
+                <li>Category {{ object.category.name }}</li>
+                <li>Shelf: {{ object.shelf }}</li>
+                <li>Lending status: {{ object.lending_status }}</li>
+                <img src="{{ object.cover.url }}" />
+            </ul>
+        </div>
+
+
+{% endblock content %}

@@ -10,7 +10,7 @@
                 {% for book in books_all %}
                     <div style="padding-bottom: 20px; align-items: center">
                         <td>
-                            {{ book.title }}
+                            <a href ="{% url 'show-book-details' book.id %}">{{ book.title }}</a>
                         </td>
                     </div>
                 {% endfor %}<br>

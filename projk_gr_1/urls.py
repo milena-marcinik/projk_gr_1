@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 from user_panel import views as user_views
 from user_panel.views import UserListView, UserDeleteView, UserUpdateView
+
+from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,3 +36,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='user_panel/logout.html'), name='logout'),
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
