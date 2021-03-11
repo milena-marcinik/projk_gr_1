@@ -76,3 +76,14 @@ class BookListView(ListView):
     model = Book
     context_object_name = 'books_all'
     queryset = Book.objects.all()
+
+
+def change_book_status(request, pk):
+    picked_book = Book.objects.filter(id=pk).all()[0]
+    if picked_book.lending_status == "free":
+        picked_book.lending_status = "lent"
+    elif picked_book.lending_status == "lent":
+        picked_book.lending_status = "free"
+    picked_book.save()
+
+    return redirect(request.META['HTTP_REFERER'])
