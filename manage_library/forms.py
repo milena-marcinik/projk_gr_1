@@ -12,9 +12,12 @@ class ShelfCreateForm(ModelForm):
             'name': "Shelf name"
         }
 
-
-
 class BookAddForm(ModelForm):
     class Meta:
         model = Book
         fields = "__all__"
+
+class BookChangeShelfForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ["shelf"]

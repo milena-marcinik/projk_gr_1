@@ -7,11 +7,11 @@ from manage_library.models import Category, Room, Bookcase, Shelf, Book
 current_wkd = os.getcwd() + "/manage_library/auxiliaries/"
 
 add_categories = True
-add_rooms = True
-add_bookcases = True
-add_shelves = True
+add_rooms = False
+add_bookcases = False
+add_shelves = False
 add_books = True
-add_users = True
+add_users = False
 
 if add_categories:
     with open(current_wkd+"categories.json") as h:

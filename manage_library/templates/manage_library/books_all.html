@@ -12,7 +12,7 @@
                         <td>
                             <a href ="{% url 'show-book-details' book.id %}">{{ book.title }}</a>
                             <br>
-                            <a href ="{% url 'change-book-status' book.id %}">Reverse current status: {{ book.lending_status }} </a>
+                            <a href ="{% url 'change-book-status' book.id %}" style="color:green">Reverse current status: {{ book.lending_status }} </a>
                         </td>
                     </div>
                 {% endfor %}<br>
