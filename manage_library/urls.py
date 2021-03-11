@@ -13,6 +13,10 @@ urlpatterns = [
     path('listallbooks/', BookListView.as_view(template_name="manage_library/books_all.html"), name="list-all-books"),
     path('detailsbook/<int:pk>', DetailView.as_view(model=Book), name="show-book-details"),
     path('changebookstatus/<int:pk>', views.change_book_status, name="change-book-status"),
+
+        path('changebookshelf/<int:pk>', views.ChangeBookShelf.as_view(model=Book), name="change-book-shelf"),
+
+
     path('addnewbook/', BookAddView.as_view(template_name="manage_library/add_book.html"), name="add-new-book"),
     path('listallbooks/<int:pk>/delete/', BooksDeleteView.as_view(template_name='manage_library/book_confirm_delete.html'),
          name='book_delete'),

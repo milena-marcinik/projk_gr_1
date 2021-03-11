@@ -4,40 +4,47 @@
 {% block content %}
 {% if user.is_authenticated %}
 
-<h1>Book List</h1><br>
-{% if books_all %}
-<ul>
-    {% for book in books_all %}
-    <div style="padding-bottom: 20px; align-items: center">
-        <td>
-            <a href="{% url 'show-book-details' book.id %}">{{ book.title }}</a>
-            <br>
-            <a href="{% url 'change-book-status' book.id %}">Reverse current status: {{ book.lending_status }} </a>
-            {% if request.user.is_superuser %}
+        <h1>Book List</h1><br>
+        {% if books_all %}
+            <ul>
+                {% for book in books_all %}
+                    <div style="padding-bottom: 20px; align-items: center">
+                        <td>
+                            <a href ="{% url 'show-book-details' book.id %}">{{ book.title }}</a>
+                            <br>
+                            <a href ="{% url 'change-book-status' book.id %}">Reverse current status: {{ book.lending_status }} </a>
+                             {% if request.user.is_superuser %}
 
-            <div class="right">
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'book_delete' book.id %}">Delete</a>
-            </div>
+                            <div class="right">
+                                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'book_delete' book.id %}">Delete</a>
+                            </div>
 
-            {% endif %}
-        </td>
-    </div>
-    {% endfor %}<br>
-</ul>
-{% else %}
-<p>There are no books.</p>
-{% endif %}
+                            {% endif %}
+                        </td>
+                    </div>
+                {% endfor %}<br>
+            </ul>
+        {% else %}
+            <p>There are no books.</p>
+        {% endif %}
 
-{% else %}
-<h4>You cannot see books because you are not an user</h4>
-<div class="content">
-    <small class="text-muted">
-        Back to <a class="content-link" style="font-weight:bold" href="{% url 'main_manage_library' %}">home
-        page</a><br>
-        Do you want to <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">log in as
-        admin?</a>
-    </small>
-</div>
 
-{% endif %}
+
+
+
+
+
+
+    {% else %}
+        <h4>You cannot see books because you are not an user</h4>
+        <div class="content">
+            <small class="text-muted">
+                Back to <a class="content-link" style="font-weight:bold" href="{% url 'main_manage_library' %}">home
+                page</a><br>
+                Do you want to <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">log in as
+                admin?</a>
+            </small>
+        </div>
+
+    {% endif %}
 {% endblock content %}
