@@ -1,0 +1,34 @@
+{% extends "manage_library/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <h1>Book List</h1><br>
+        {% if books_all %}
+            <ul>
+                {% for book in books_all %}
+                    <div style="padding-bottom: 20px; align-items: center">
+                        <td>
+                            {{ book.title }}
+                        </td>
+                    </div>
+                {% endfor %}<br>
+            </ul>
+        {% else %}
+            <p>There are no books.</p>
+        {% endif %}
+
+    {% else %}
+        <h4>You cannot see books because you are not an user</h4>
+        <div class="content">
+            <small class="text-muted">
+                Back to <a class="content-link" style="font-weight:bold" href="{% url 'main_manage_library' %}">home
+                page</a><br>
+                Do you want to <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">log in as
+                admin?</a>
+            </small>
+        </div>
+
+    {% endif %}
+{% endblock content %}

@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
 
 from manage_library.forms import ShelfCreateForm, BookAddForm
-from manage_library.models import Room, Bookcase, Shelf
+from manage_library.models import Room, Bookcase, Shelf, Book
 
 
 # TODO decorator of log in
@@ -71,3 +71,8 @@ class BookAddView(SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+class BookListView(ListView):
+    model = Book
+    context_object_name = 'books_all'
+    queryset = Book.objects.all()

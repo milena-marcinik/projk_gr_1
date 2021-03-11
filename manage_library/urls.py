@@ -2,14 +2,14 @@ from django.urls import path
 
 from . import views
 from .views import RoomListView, RoomCreateView, BookcaseListView, BookcaseCreateView, ShelfListView, ShelfCreateView, \
-    BookAddView
+    BookAddView, BookListView
 
 urlpatterns = [
     path('', views.main_manage_library, name="main_manage_library"),
     #  wpisalam pojedyncze literki w poniższych ścieżkach, bo chciałam mieć tylko jedną pustą ''
     #  te ponizej do zmiany potem
-    path('a/', views.main_manage_library, name="show-book-collection"),
-            path('addnewbook/', BookAddView.as_view(template_name="manage_library/add_book.html"), name="add-new-book"),#TODO
+    path('listallbooks/', BookListView.as_view(template_name="manage_library/books_all.html"), name="list-all-books"),
+    path('addnewbook/', BookAddView.as_view(template_name="manage_library/add_book.html"), name="add-new-book"),#TODO
     path('c/', views.main_manage_library, name="remove-book"),
     path('room/', RoomListView.as_view(template_name='manage_library/rooms_all.html'), name="all-rooms"),
     path('addroom/', RoomCreateView.as_view(template_name='manage_library/add_room.html'), name="add-room"),
