@@ -2,24 +2,29 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        <h4>Latest books</h4>
+        <h3>Latest books</h3>
+        <br>
         {% if books_all %}
-            <div style="border: 2px; width: 700px;">
-                <div style="display: flex; flex-wrap: wrap; margin:-10px;">
+            <div style="border: 2px; width: 800px;">
+                <div style="display: flex; flex-wrap: wrap; margin:-5px;">
                     {% for book in books_all|slice:":10" %}
                         <div style="flex: 1 1 300px; margin: 10px;">
-                            <img style="float: left; border: 1px solid #ddd; border-radius: 1px; padding: 4px; width: 100px;"
+                            <img style="float: left; border: 1px solid #ddd; border-radius: 1px; padding: 4px; width: 100px"
                                  src="{{ book.cover.url }}" alt="">
-                            <div style="text-align: left;">
-                                <a href="{% url 'show-book-details' book.id %}"><b>{{ book.title }}</b></a>
+                            <div style="text-align: left">
+                                <a href="{% url 'show-book-details' book.id %}"><b> {{ book.title }}</b></a>
                                 <br>
-                                <a href="{% url 'show-book-details' book.id %}"><i>{{ book.author }}</i></a>
+                                <a href="{% url 'show-book-details' book.id %}"><i> {{ book.author }}</i></a>
                                 <br>
 
                             </div>
                         </div>
                     {% endfor %}<br>
                 </div>
+            </div>
+            <br>
+             <div class="form-group">
+                <a class="btn btn-outline-secondary" href="{% url 'list-all-books' %}">Show all books</a>
             </div>
         {% else %}
             <p>There are no books.</p>

@@ -6,22 +6,30 @@
     <h1>Book details</h1><br>
     <div>
         <div style="float: right; margin: 10px">
-        <img src="{{ object.cover.url }}" alt="">
-    </div>
-    <div style="text-align: justify;width: 1000px">
-        <b>Title:</b> <i><b>{{ object.title }}</b></i> <br>
-        <b>Author:</b> <i><b>{{ object.author }}</b></i> <br>
-        <b>ISBN:</b> {{ object.isbn_number }} <br>
-        <b>Note:</b> {{ object.note }} <br>
-        <b>Category:</b> {{ object.category }} <br>
-        <b>Shelf:</b><a href="{% url 'change-book-shelf' object.id %}" style="color:green"> {{ object.shelf }}</a><br>
-        <b>Lending status:</b> {{ object.lending_status }}<br>
-    </div><br>
+            <img src="{{ object.cover.url }}" alt="">
+        </div>
+        <div style="text-align: justify;width: 1000px">
+            <b>Title:</b> <i><b>{{ object.title }}</b></i> <br>
+            <b>Author:</b> <i><b>{{ object.author }}</b></i> <br>
+            <b>ISBN:</b> {{ object.isbn_number }} <br>
+            <b>Note:</b> {{ object.note }} <br>
+            <b>Category:</b> {{ object.category }} <br>
+            <b>Shelf:</b><a href="{% url 'change-book-shelf' object.id %}"
+                            style="color:green"> {{ object.shelf }}</a><br>
+            <b>Lending status:</b> {{ object.lending_status }}<br>
+        </div>
+        <br>
     </div>
 
-    <form>
-        <input type="button" value="Go back!" onclick="history.back()">
-    </form>
+    <br>
+    <br>
+    <br>
+    <div class="form-group">
+        <a class="btn btn-outline-secondary" href="{% url 'list-all-books' %}">Go back</a>
+    </div>
+    <br>
+    <br>
+
 
 
 {% endblock content %}

@@ -1,5 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -61,6 +62,7 @@ class Book(models.Model):
         ("lent", "lent",),
         ("free", "free",),
     ], default="free")
+    date_added = models.DateTimeField(default=timezone.now)
 
     def __repr__(self):
         return f"title: {self.title}, author: {self.author}"

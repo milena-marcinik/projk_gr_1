@@ -9,12 +9,12 @@ from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfFo
 from manage_library.models import Room, Bookcase, Shelf, Book
 
 
-# TODO decorator of log in
 class MainManageLibrary(ListView):
     model = Book
     context_object_name = 'books_all'  # your own name for the list as a template variable
     queryset = Book.objects.all()
-    template_name = 'manage_library/main_manage_library.html.html'  # Specify your own template name/location
+    ordering = ['-date_added']
+    template_name = 'manage_library/main_manage_library.html'  # Specify your own template name/location
 
 
 class RoomListView(ListView):
