@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
@@ -88,6 +89,16 @@ class BooksDeleteView(SuccessMessageMixin, DeleteView):
     success_url = '/listallbooks/'
 
 
+class BooksUpdateView(UpdateView):
+    model = Book
+    fields = ['title', 'author', 'cover']
+
+    def form_valid(self, form):
+        instance = form.save()
+        self.success_url = reverse('show-book-details', kwargs={'pk': instance.id})
+        return super(BooksUpdateView, self).form_valid(form)
+
+
 def change_book_status(request, pk):
     picked_book = Book.objects.filter(id=pk).all()[0]
     if picked_book.lending_status == "free":
@@ -97,13 +108,6 @@ def change_book_status(request, pk):
     picked_book.save()
 
     return redirect(request.META['HTTP_REFERER'])
-
-
-class ChangeBookShelf(UpdateView):
-    model = Book
-    form_class = BookChangeShelfForm
-    template_name = "manage_library/change_book_shelf.html"
-    success_url = "/listallbooks/"
 
 
 class ChangeBookShelf(UpdateView):
