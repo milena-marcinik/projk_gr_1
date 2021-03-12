@@ -163,6 +163,13 @@ a.content-link:hover {
     padding-left: 40px;
 }
 
+.img-wrap {
+    clear: right;
+    float: right;
+    margin: 10px;
+    padding-bottom: 50px;
+}
+
 @media(max-width:768px) {
     #sidebar {
         margin-left: -250px

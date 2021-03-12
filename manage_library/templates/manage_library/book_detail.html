@@ -4,20 +4,21 @@
 {% block content %}
 
     <h1>Book details</h1><br>
-        <div style="padding-bottom: 20px; align-items: center">
-            <ul>
-                <li>Title: {{ object.title }}</li>
-                <li>Author: {{ object.author }}</li>
-                <li>ISBN: {{ object.isbn_number }}</li>
-                <li>Note: {{ object.note}}</li>
-                <li>Category {{ object.category }}</li>
-                <li>
-                    <a href ="{% url 'change-book-shelf' object.id %}" style="color:green">Shelf: {{ object.shelf }}</a>
-                </li>
-                <li>Lending status: {{ object.lending_status }} </li>
-                <img src="{{ object.cover.url }}" />
-            </ul>
-        </div>
+    <div style="float: right; margin: 10px">
+        <img src="{{ object.cover.url }}" alt="">
+    </div>
+    <div style="text-align: justify;width: 1000px">
+        <b>Title:</b> <i><b>{{ object.title }}</b></i> <br>
+        <b>Author:</b> <i><b>{{ object.author }}</b></i> <br>
+        <b>ISBN:</b> {{ object.isbn_number }} <br>
+        <b>Note:</b> {{ object.note }} <br>
+        <b>Category:</b> {{ object.category }} <br>
+        <b>Shelf:</b><a href="{% url 'change-book-shelf' object.id %}" style="color:green"> {{ object.shelf }}</a><br>
+        <b>Lending status:</b> {{ object.lending_status }}<br>
+    </div><br>
+    <form>
+        <input type="button" value="Go back!" onclick="history.back()">
+    </form>
 
 
 {% endblock content %}

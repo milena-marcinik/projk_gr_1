@@ -98,3 +98,9 @@ class ChangeBookShelf(UpdateView):
     form_class = BookChangeShelfForm
     template_name = "manage_library/change_book_shelf.html"
     success_url = "/listallbooks/"
+
+class ChangeBookShelf(UpdateView):
+    model = Book
+    form_class = BookChangeShelfForm
+    template_name = "manage_library/change_book_shelf.html"
+    success_url = "/listallbooks/"

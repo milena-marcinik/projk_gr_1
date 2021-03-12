@@ -21,3 +21,8 @@ class BookChangeShelfForm(ModelForm):
     class Meta:
         model = Book
         fields = ["shelf"]
+
+class BookChangeShelfForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ["shelf"]
