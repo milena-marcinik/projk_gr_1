@@ -1,3 +1,4 @@
+from PIL import Image
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
@@ -66,3 +67,13 @@ class Book(models.Model):
 
     def __repr__(self):
         return f"title: {self.title}, author: {self.author}"
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.cover.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.cover.path)

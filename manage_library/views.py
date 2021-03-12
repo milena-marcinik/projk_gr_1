@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
-from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfForm
+from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfForm, BookUpdateForm
 from manage_library.models import Room, Bookcase, Shelf, Book
 
 
@@ -89,14 +89,16 @@ class BooksDeleteView(SuccessMessageMixin, DeleteView):
     success_url = '/listallbooks/'
 
 
-class BooksUpdateView(UpdateView):
+class BookUpdateView(SuccessMessageMixin, UpdateView):
     model = Book
-    fields = ['title', 'author', 'cover']
+    form_class = BookUpdateForm
+    success_message = f'Book has been changed!'
 
     def form_valid(self, form):
-        instance = form.save()
-        self.success_url = reverse('show-book-details', kwargs={'pk': instance.id})
-        return super(BooksUpdateView, self).form_valid(form)
+        if form.is_valid():
+            form.save()
+            self.success_url = reverse('show-book-details', kwargs={'pk': form.save().id})
+            return super().form_valid(form)
 
 
 def change_book_status(request, pk):
