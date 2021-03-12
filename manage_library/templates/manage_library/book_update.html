@@ -4,7 +4,7 @@
     <div class="content">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <fieldset class="form-group">
+            <fieldset class="form-group" style="width: 60em">
                 <legend class="border-bottom mb-4">Update Book</legend>
                 <h2>
                     Update information about the <b>{{ book.title }}</b></h2>
@@ -12,8 +12,8 @@
             </fieldset>
 
             <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">Save changes</button>
-                <a class="btn btn-outline-secondary" href="{% url 'show-book-details' object.id %}">Cancel</a>
+                <button class="btn btn-outline-danger btn-sm mt-1 mb-1" type="submit">Save changes</button>
+                <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'show-book-details' object.id %}">Cancel</a>
             </div>
         </form>
     </div>

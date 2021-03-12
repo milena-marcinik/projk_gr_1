@@ -30,12 +30,12 @@ class BookUpdateForm(ModelForm):
         model = Book
         fields = ['title', 'author', 'cover', 'note', 'category']
 
-    def save(self, commit=True):
-        super().save()
-        book = super(BookUpdateForm, self).save(commit=False)
-        book.cover = self.cleaned_data["cover"]
-        book.title = self.cleaned_data["title"]
-        book.author = self.cleaned_data["author"]
-        if commit:
-            book.save()
-        return book
+    # def save(self, commit=True):
+    #     super().save()
+    #     book = super(BookUpdateForm, self).save(commit=False)
+    #     book.cover = self.cleaned_data["cover"]
+    #     book.title = self.cleaned_data["title"]
+    #     book.author = self.cleaned_data["author"]
+    #     if commit:
+    #         book.save()
+    #     return book
