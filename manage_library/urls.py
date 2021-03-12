@@ -4,10 +4,10 @@ from django.views.generic import DetailView
 from . import views
 from .models import Book
 from .views import RoomListView, RoomCreateView, BookcaseListView, BookcaseCreateView, ShelfListView, ShelfCreateView, \
-    BookAddView, BookListView, BooksDeleteView
+    BookAddView, BookListView, BooksDeleteView, MainManageLibrary
 
 urlpatterns = [
-    path('', views.main_manage_library, name="main_manage_library"),
+    path('', MainManageLibrary.as_view(template_name="manage_library/main_manage_library.html"), name="main_manage_library"),
     path('listallbooks/', BookListView.as_view(template_name="manage_library/books_all.html"), name="list-all-books"),
     path('detailsbook/<int:pk>', DetailView.as_view(model=Book), name="show-book-details"),
     path('changebookstatus/<int:pk>', views.change_book_status, name="change-book-status"),

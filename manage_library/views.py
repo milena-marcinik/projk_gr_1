@@ -3,16 +3,18 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from django.views.generic import ListView, CreateView, DeleteView,UpdateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfForm
 from manage_library.models import Room, Bookcase, Shelf, Book
 
 
 # TODO decorator of log in
-def main_manage_library(request):
-    pass
-    return render(request, template_name="manage_library/main_manage_library.html")
+class MainManageLibrary(ListView):
+    model = Book
+    context_object_name = 'books_all'  # your own name for the list as a template variable
+    queryset = Book.objects.all()
+    template_name = 'manage_library/main_manage_library.html.html'  # Specify your own template name/location
 
 
 class RoomListView(ListView):
@@ -64,6 +66,7 @@ class ShelfCreateView(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         return super(ShelfCreateView, self).form_valid(form)
 
+
 class BookAddView(SuccessMessageMixin, CreateView):
     form_class = BookAddForm
     success_url = "/addnewbook/"
@@ -72,10 +75,12 @@ class BookAddView(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+
 class BookListView(ListView):
     model = Book
     context_object_name = 'books_all'
     queryset = Book.objects.all()
+
 
 class BooksDeleteView(SuccessMessageMixin, DeleteView):
     model = Book
@@ -93,11 +98,13 @@ def change_book_status(request, pk):
 
     return redirect(request.META['HTTP_REFERER'])
 
+
 class ChangeBookShelf(UpdateView):
     model = Book
     form_class = BookChangeShelfForm
     template_name = "manage_library/change_book_shelf.html"
     success_url = "/listallbooks/"
+
 
 class ChangeBookShelf(UpdateView):
     model = Book

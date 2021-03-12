@@ -1,20 +1,39 @@
 {% extends "manage_library/base.html" %}
 {% block content %}
 
-{% if user.is_authenticated %}
-<h5>Tu moze byc np. 10 ostatnich ksiazek z okladka:</h5>
-- ksiazka 1 <br>
-- ksiazka 2 <br>
-...
+    {% if user.is_authenticated %}
+        <h4>Latest books</h4>
+        {% if books_all %}
+            <div style="border: 2px; width: 700px;">
+                <div style="display: flex; flex-wrap: wrap; margin:-10px;">
+                    {% for book in books_all|slice:":10" %}
+                        <div style="flex: 1 1 300px; margin: 10px;">
+                            <img style="float: left; border: 1px solid #ddd; border-radius: 1px; padding: 4px; width: 100px;"
+                                 src="{{ book.cover.url }}" alt="">
+                            <div style="text-align: left;">
+                                <a href="{% url 'show-book-details' book.id %}"><b>{{ book.title }}</b></a>
+                                <br>
+                                <a href="{% url 'show-book-details' book.id %}"><i>{{ book.author }}</i></a>
+                                <br>
 
-{% else %}
+                            </div>
+                        </div>
+                    {% endfor %}<br>
+                </div>
+            </div>
+        {% else %}
+            <p>There are no books.</p>
+        {% endif %}
 
-    <h5></h5>
-    <div class="content">
-             <a class="content-link" href="{% url 'login' %}">Log in</a> to enter the library
-    </div>
 
-{% endif %}
+    {% else %}
+
+        <h5></h5>
+        <div class="content">
+            <a class="content-link" href="{% url 'login' %}">Log in</a> to enter the library
+        </div>
+
+    {% endif %}
 
 
 {% endblock content %}

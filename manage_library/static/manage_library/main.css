@@ -43,8 +43,20 @@ a:focus {
 
 .wrapper {
     display: flex;
-    width: 100%;
+    width: 40%;
     align-items: stretch
+}
+
+.box {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;
+}
+
+.box > * {
+    flex: 1 1 160px;
+    margin: 10px;
 }
 
 #sidebar {
@@ -87,7 +99,7 @@ a:focus {
     background: #444444
 }
 
-#sidebar ul li.active>a,
+#sidebar ul li.active > a,
 a[aria-expanded="true"] {
     color: #fff;
     background: #888888
@@ -141,8 +153,8 @@ a.download:hover {
 }
 
 a.content-link:hover {
-  color: #004241;
-  text-decoration: none;
+    color: #004241;
+    text-decoration: none;
 }
 
 
@@ -170,7 +182,7 @@ a.content-link:hover {
     padding-bottom: 50px;
 }
 
-@media(max-width:768px) {
+@media (max-width: 768px) {
     #sidebar {
         margin-left: -250px
     }

@@ -4,7 +4,8 @@
 {% block content %}
 
     <h1>Book details</h1><br>
-    <div style="float: right; margin: 10px">
+    <div>
+        <div style="float: right; margin: 10px">
         <img src="{{ object.cover.url }}" alt="">
     </div>
     <div style="text-align: justify;width: 1000px">
@@ -16,6 +17,8 @@
         <b>Shelf:</b><a href="{% url 'change-book-shelf' object.id %}" style="color:green"> {{ object.shelf }}</a><br>
         <b>Lending status:</b> {{ object.lending_status }}<br>
     </div><br>
+    </div>
+
     <form>
         <input type="button" value="Go back!" onclick="history.back()">
     </form>
