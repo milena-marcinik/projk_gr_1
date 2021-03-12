@@ -69,6 +69,11 @@ class Book(models.Model):
         return f"title: {self.title}, author: {self.author}"
 
     def save(self):
+
+        this_book = Book.objects.get(id=self.id)
+        if not this_book.cover.url.endswith("default_cover.jpg") and self.cover.url != this_book.cover.url:
+            this_book.cover.delete(save=False)
+
         super().save()
 
         img = Image.open(self.cover.path)
