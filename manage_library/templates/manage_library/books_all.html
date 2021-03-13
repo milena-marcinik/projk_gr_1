@@ -1,5 +1,6 @@
 {% extends "manage_library/base.html" %}
 {% load crispy_forms_tags %}
+{% load bootstrap %}
 
 {% block content %}
     {% if user.is_authenticated %}
@@ -13,7 +14,7 @@
                         <input name="query" type="text" placeholder="Search here.."
                                class="form-control form-control-sm mt-1 mb-1"/>
                         <div class="input-group-append">
-                            <button class="btn btn-dark btn-sm mt-1 mb-1"> Search</button>
+                            <button class="btn btn-dark btn-sm mt-1 mb-1">Search</button>
                         </div>
 
                     </div>
@@ -23,9 +24,15 @@
         </div>
 
 
+
         {% if books_all %}
+            <form method="GET">
+            {{ filter.form|bootstrap }}
+            <button type="submit" class="btn btn-dark btn-sm mt-1 mb-1">Search</button>
+            </form>
+
             <ul>
-                {% for book in books_all %}
+                {% for book in filter.qs %}
                     <div style="padding: 1em; align-items: center">
                         <td>
                             <div style="flex: 1 1 300px; margin: 10px;">
