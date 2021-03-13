@@ -12,9 +12,9 @@
                             <img style="float: left; border: 1px solid #ddd; border-radius: 1px; padding: 4px; width: 100px"
                                  src="{{ book.cover.url }}" alt="">
                             <div style="text-align: left">
-                                <a href="{% url 'show-book-details' book.id %}"><b> {{ book.title }}</b></a>
+                                <a href="{% url 'show-book-details' book.id %}"><i> {{ book.title }}</i></a>
                                 <br>
-                                <a href="{% url 'show-book-details' book.id %}"><i> {{ book.author }}</i></a>
+                                <a href="{% url 'show-book-details' book.id %}"><b> {{ book.author }}</b></a>
                                 <br>
 
                             </div>

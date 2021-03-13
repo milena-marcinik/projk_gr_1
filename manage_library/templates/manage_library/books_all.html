@@ -13,7 +13,7 @@
                 {% for book in books_all %}
                     <div style="padding-bottom: 20px; align-items: center; width: 60em">
                         <td>
-                            <a href ="{% url 'show-book-details' book.id %}">{{ book.title }}</a>
+                            <a href ="{% url 'show-book-details' book.id %}"><i>{{ book.title }}</i></a>
                             <br>
                             <a href ="{% url 'change-book-status' book.id %}">Reverse current status: {{ book.lending_status }} </a>
                              {% if request.user.is_superuser %}

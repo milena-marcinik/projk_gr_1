@@ -6,7 +6,7 @@
             {% csrf_token %}
             <fieldset class="form-group" style="width: 60em">
                 <legend class="border-bottom mb-4">Delete Book</legend>
-                <h3>Are you sure you want to delete <b>{{ book.title }} </b> by <i>{{ book.author }}</i>?</h3>
+                <h3>Are you sure you want to delete <i>{{ book.title }} </i> by <b>{{ book.author }}</b>?</h3>
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-danger" type="submit" >Yes, delete</button>
