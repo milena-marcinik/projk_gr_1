@@ -14,36 +14,35 @@ add_books = True
 add_users = False
 
 if add_categories:
-    with open(current_wkd+"categories.json") as h:
+    with open(current_wkd + "categories.json") as h:
         categories = json.load(h)
     for category in categories:
         Category(name=category["name"]).save()
 
 if add_rooms:
-    with open(current_wkd+"rooms.json") as h:
+    with open(current_wkd + "rooms.json") as h:
         rooms = json.load(h)
     for room in rooms:
         Room(name=room["name"]).save()
 
 if add_bookcases:
-    with open(current_wkd+"bookcases.json") as h:
+    with open(current_wkd + "bookcases.json") as h:
         bookcases = json.load(h)
     for bookcase in bookcases:
-
         Bookcase(name=bookcase["name"],
                  room=Room.objects.filter(name=bookcase["room"]).all()[0]
-                ).save()
+                 ).save()
 
 if add_shelves:
-    with open(current_wkd+"shelves.json") as h:
+    with open(current_wkd + "shelves.json") as h:
         shelves = json.load(h)
     for shelf in shelves:
         Shelf(name=shelf["name"],
               bookcase=Bookcase.objects.filter(name=shelf["bookcase"]).all()[0]
-             ).save()
+              ).save()
 
 if add_books:
-    with open(current_wkd+"books.json", encoding="utf8") as h:
+    with open(current_wkd + "books.json", encoding="utf8") as h:
         books = json.load(h)
     for book in books:
         Book(
@@ -51,19 +50,19 @@ if add_books:
             author=book["author"],
             isbn_number=book.get("isbn_number", ""),
             note=book.get("note", ""),
-            #cover=
+            # cover=
             category=Category.objects.filter(name=book["category"]).all()[0],
             shelf=Shelf.objects.filter(name=book["shelf"])
                 .filter(bookcase__name=book["bookcase"])
                 .filter(bookcase__room__name=book["room"])
                 .all()[0]
-            #lending_status=
+            # lending_status=
         ).save()
 
 if add_users:
-    with open(current_wkd+"users.json", encoding="utf8") as h:
+    with open(current_wkd + "users.json", encoding="utf8") as h:
         users = json.load(h)
     for user in users:
-        user_in_loop = User(username=user["username"], is_superuser=user["is_superuser"],)
+        user_in_loop = User(username=user["username"], is_superuser=user["is_superuser"], )
         user_in_loop.set_password(user["password"])
         user_in_loop.save()
