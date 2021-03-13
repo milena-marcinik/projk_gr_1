@@ -6,23 +6,6 @@
     {% if user.is_authenticated %}
 
         <h1>Book List</h1><br>
-        <div class="row">
-            <div class="col-md-8 offset-2">
-
-                <form action="{% url 'search_result' %}" method="get">
-                    <div class="input-group ">
-                        <input name="query" type="text" placeholder="Search here.."
-                               class="form-control form-control-sm mt-1 mb-1"/>
-                        <div class="input-group-append">
-                            <button class="btn btn-dark btn-sm mt-1 mb-1">Search</button>
-                        </div>
-
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
 
 
         {% if books_all %}
