@@ -4,7 +4,7 @@ from django.views.generic import DetailView
 from . import views
 from .models import Book
 from .views import RoomListView, RoomCreateView, BookcaseListView, BookcaseCreateView, ShelfListView, ShelfCreateView, \
-    BookAddView, BookListView, BooksDeleteView, MainManageLibrary, BookUpdateView
+    BookAddView, BookListView, BooksDeleteView, MainManageLibrary, BookUpdateView, book_search_page
 
 urlpatterns = [
     path('', MainManageLibrary.as_view(template_name="manage_library/main_manage_library.html"),
@@ -19,6 +19,7 @@ urlpatterns = [
     path('listallbooks/<int:pk>/delete/',
          BooksDeleteView.as_view(template_name='manage_library/book_confirm_delete.html'),
          name='book_delete'),
+    path('search/', book_search_page, name='search_result'),
     path('detailsbook/<int:pk>/update/', BookUpdateView.as_view(template_name='manage_library/book_update.html'), name='book_update'),
     path('room/', RoomListView.as_view(template_name='manage_library/rooms_all.html'), name="all-rooms"),
     path('addroom/', RoomCreateView.as_view(template_name='manage_library/add_room.html'), name="add-room"),

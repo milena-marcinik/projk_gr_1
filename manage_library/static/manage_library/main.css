@@ -175,6 +175,15 @@ a.content-link:hover {
     padding-left: 40px;
 }
 
+.jumbotron {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.jumbotron p{
+  margin-bottom: 0;
+}
+
 .img-wrap {
     clear: right;
     float: right;

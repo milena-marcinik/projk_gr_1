@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core import paginator
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -119,3 +121,10 @@ class ChangeBookShelf(UpdateView):
     form_class = BookChangeShelfForm
     template_name = "manage_library/change_book_shelf.html"
     success_url = "/listallbooks/"
+
+
+def book_search_page(request):
+    srh = request.GET['query']
+    books = Book.objects.filter(Q(title__icontains=srh) | Q(author__icontains=srh))
+    params = {'books': books, 'search': srh}
+    return render(request, 'manage_library/search_books.html', params)

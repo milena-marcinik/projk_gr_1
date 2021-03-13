@@ -68,6 +68,9 @@ class Book(models.Model):
     def __repr__(self):
         return f"title: {self.title}, author: {self.author}"
 
+    def __str__(self):
+        return self.title
+
     def save(self):
 
         this_book = Book.objects.get(id=self.id)

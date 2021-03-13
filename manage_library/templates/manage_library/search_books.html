@@ -5,6 +5,8 @@
     {% if user.is_authenticated %}
 
         <h1>Book List</h1><br>
+
+
         <div class="row">
             <div class="col-md-8 offset-2">
 
@@ -23,9 +25,10 @@
         </div>
 
 
-        {% if books_all %}
+
+        {% if books %}
             <ul>
-                {% for book in books_all %}
+                {% for book in books %}
                     <div style="padding: 1em; align-items: center">
                         <td>
                             <div style="flex: 1 1 300px; margin: 10px;">
