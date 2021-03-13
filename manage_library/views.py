@@ -85,13 +85,16 @@ class BookListView(ListView):
     model = Book
     context_object_name = 'books_all'
     queryset = Book.objects.all()
-    # paginate_by = 7
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = BookFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return BookFilter(self.request.GET, queryset=queryset).qs
 
 class BooksDeleteView(SuccessMessageMixin, DeleteView):
     model = Book

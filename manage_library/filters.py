@@ -9,6 +9,7 @@ class BookFilter(django_filters.FilterSet):
     class Meta:
         model = Book
         fields = ('category', 'shelf__bookcase__room')
+        paginate_by = 5
 
     def __init__(self, *args, **kwargs):
         super(BookFilter, self).__init__(*args, **kwargs)
