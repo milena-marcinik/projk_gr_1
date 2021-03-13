@@ -134,3 +134,5 @@ def book_search_page(request):
     books = Book.objects.filter(Q(title__icontains=srh) | Q(author__icontains=srh))
     params = {'books': books, 'search': srh}
     return render(request, 'manage_library/search_books.html', params)
+
+
