@@ -4,10 +4,21 @@
 {% block content %}
 {% if user.is_authenticated %}
 
-        <h1>Book List</h1><br>
+    <h1>Book List</h1><br>
     <div class="form-group">
         <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'main_manage_library' %}">Go back</a>
     </div>
+
+    <div class="form-choose_category">
+        <form method="GET" novalidate>
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+        </form>
+        <a class="form-choose-category" type="submit" href="{% url 'list-filtered-books' 1 %}">Filter</a>
+    </div>
+
         {% if books_all %}
             <ul>
                 {% for book in books_all %}

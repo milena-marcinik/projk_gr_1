@@ -10,6 +10,7 @@ urlpatterns = [
     path('', MainManageLibrary.as_view(template_name="manage_library/main_manage_library.html"),
          name="main_manage_library"),
     path('listallbooks/', BookListView.as_view(template_name="manage_library/books_all.html"), name="list-all-books"),
+        path('listallbooks/<int:pk>', BookListView.as_view(template_name="manage_library/books_all.html"), name="list-filtered-books"),
     path('detailsbook/<int:pk>', DetailView.as_view(model=Book), name="show-book-details"),
     path('changebookstatus/<int:pk>', views.change_book_status, name="change-book-status"),
 
