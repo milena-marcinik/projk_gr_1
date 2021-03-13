@@ -85,7 +85,7 @@ class BookListView(ListView):
     model = Book
     context_object_name = 'books_all'
     queryset = Book.objects.all()
-    paginate_by = 7
+    # paginate_by = 7
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
