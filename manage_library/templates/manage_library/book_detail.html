@@ -25,7 +25,7 @@
     <br>
     <br>
     <div class="form-group">
-        <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'main_manage_library' %}">Go back</a>
+        <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'list-all-books' %}">Go back</a>
         <a class="btn btn-outline-info btn-sm mt-1 mb-1" type="submit" href="{% url 'book_update' object.id %}">Update</a>
         <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'book_delete' book.id %}">Delete</a>
     </div>

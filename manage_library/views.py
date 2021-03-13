@@ -8,6 +8,7 @@ from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfForm, BookUpdateForm
 from manage_library.models import Room, Bookcase, Shelf, Book
+from django.core.paginator import Paginator
 
 
 class MainManageLibrary(ListView):
@@ -81,6 +82,7 @@ class BookListView(ListView):
     model = Book
     context_object_name = 'books_all'
     queryset = Book.objects.all()
+    paginate_by = 7
 
 
 class BooksDeleteView(SuccessMessageMixin, DeleteView):
