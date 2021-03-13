@@ -38,7 +38,7 @@ class RoomCreateView(SuccessMessageMixin, CreateView):
 class BookcaseListView(ListView):
     model = Bookcase
     context_object_name = 'bookcases_all'  # your own name for the list as a template variable
-    queryset = Bookcase.objects.all()
+    queryset = Bookcase.objects.select_related()
     template_name = 'manage_library/bookcase_all.html'  # Specify your own template name/location
 
 
@@ -55,7 +55,7 @@ class BookcaseCreateView(SuccessMessageMixin, CreateView):
 class ShelfListView(ListView):
     model = Shelf
     context_object_name = 'shelves_all'  # your own name for the list as a template variable
-    queryset = Shelf.objects.all()
+    queryset = Shelf.objects.select_related()
     template_name = 'manage_library/shelf_all.html'  # Specify your own template name/location
 
 

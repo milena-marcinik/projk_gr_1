@@ -32,7 +32,7 @@ class Bookcase(models.Model):
         return f"name: {self.name} room.name: {self.room.name}"
 
     def __str__(self):
-        return f"{self.room}, {self.name}"
+        return f"room: {self.room}, bookcase: {self.name}"
 
 
 class Shelf(models.Model):

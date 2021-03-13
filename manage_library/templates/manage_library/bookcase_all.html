@@ -6,11 +6,15 @@
 
         <h1>Bookcase List</h1><br>
         {% if bookcases_all %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" style="margin-left: 30px" href="{% url 'add-bookcase' %}">Add
+                    bookcase</a>
+            </div><br>
             <ul>
                 {% for bookcase in bookcases_all %}
                     <div style="padding-bottom: 20px; align-items: center">
                         <td>
-                            {{ bookcase.name }}
+                           <i>room: {{ bookcase.room }}</i>, bookcase:<b> {{ bookcase.name }}</b>
                         </td>
                     </div>
                 {% endfor %}<br>
@@ -18,27 +22,6 @@
         {% else %}
             <p>There are no bookcases.</p>
         {% endif %}
-
-
-        {% if request.user.is_superuser %}
-            <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" style="margin-left: 30px" href="{% url 'add-bookcase' %}">Add
-                    bookcase</a>
-            </div><br>
-
-        {% else %}
-            <h4>You cannot add new bookcase because you are not an user</h4>
-            <div class="content">
-                <small class="text-muted">
-                    Back to <a class="content-link" style="font-weight:bold" href="{% url 'main_manage_library' %}">home
-                    page</a><br>
-                    Do you want to <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">log in as
-                    admin?</a>
-                </small>
-            </div>
-        {% endif %}
-
-
 
     {% else %}
         <h4>You cannot see rooms because you are not an user</h4>

@@ -5,6 +5,10 @@
     {% if user.is_authenticated %}
 
         <h1>Room List</h1><br>
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" style="margin-left: 30px" href="{% url 'add-room' %}">Add
+                room</a>
+        </div><br>
         {% if rooms_all %}
             <ul>
                 {% for room in rooms_all %}
@@ -18,27 +22,6 @@
         {% else %}
             <p>There are no rooms.</p>
         {% endif %}
-
-
-        {% if request.user.is_superuser %}
-            <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" style="margin-left: 30px" href="{% url 'add-room' %}">Add
-                    room</a>
-            </div><br>
-
-        {% else %}
-            <h4>You cannot add new room because you are not an user</h4>
-            <div class="content">
-                <small class="text-muted">
-                    Back to <a class="content-link" style="font-weight:bold" href="{% url 'main_manage_library' %}">home
-                    page</a><br>
-                    Do you want to <a class="content-link" style="font-weight:bold" href="{% url 'login' %}">log in as
-                    admin?</a>
-                </small>
-            </div>
-        {% endif %}
-
-
 
     {% else %}
         <h4>You cannot see rooms because you are not an user</h4>
