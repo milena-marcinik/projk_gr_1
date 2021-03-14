@@ -25,18 +25,17 @@ class BookAddISBNForm(ModelForm):
         model = Book
         fields = ["isbn_number"]
 
-    def save(self):
-        print("XXXXXXXXXX")
-        print(self.cleaned_data['isbn_number'])
-        print(isbnlib.meta(self.cleaned_data['isbn_number'])['Title'])
-        print("POOOOO")
+    def save(self, *args, **kwargs):
+        provided_isbn_number = self.cleaned_data['isbn_number']
+        isbn_handle = isbnlib.meta(provided_isbn_number)
+        if isbn_handle == {}:
+            return None
         new_book = Book.objects.create(
-            # isbn_number = self.cleaned_data['isbn_number'],
-            # title=isbnlib.meta(self.isbn_number)['Title'],
-            # author=isbnlib.meta(self.isbn_number)['Authors'],
-            # # cover=isbnlib.meta(self.isbn_number),
+            isbn_number = provided_isbn_number,
+            title = isbn_handle['Title'],
+            author=" ".join(isbn_handle['Authors']),
         )
-
+        super().save(*args, **kwargs)
         return new_book
 
     # import isbnlib

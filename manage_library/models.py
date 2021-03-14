@@ -57,7 +57,7 @@ class Book(models.Model):
     ], blank=True)
     note = models.TextField(default="no note")
     cover = models.ImageField(upload_to="covers", default="covers/default_cover.jpg")
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     shelf = models.ForeignKey(Shelf, on_delete=models.SET_NULL, null=True, blank=True)
     lending_status = models.CharField(max_length=4, choices=[
         ("lent", "lent",),
@@ -71,18 +71,19 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self):
+    def save(self, *args, **kwargs):
 
         try:
             this_book = Book.objects.get(id=self.id)
             if not this_book.cover.url.endswith("default_cover.jpg") and self.cover.url != this_book.cover.url:
                 this_book.cover.delete(save=False)
         except:
-            super().save()
+            pass
+        super().save(*args, **kwargs)
 
-            img = Image.open(self.cover.path)
+        img = Image.open(self.cover.path)
 
-            if img.height > 300 or img.width > 300:
-                output_size = (300, 300)
-                img.thumbnail(output_size)
-                img.save(self.cover.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.cover.path)
