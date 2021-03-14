@@ -73,15 +73,16 @@ class Book(models.Model):
 
     def save(self):
 
-        this_book = Book.objects.get(id=self.id)
-        if not this_book.cover.url.endswith("default_cover.jpg") and self.cover.url != this_book.cover.url:
-            this_book.cover.delete(save=False)
+        try:
+            this_book = Book.objects.get(id=self.id)
+            if not this_book.cover.url.endswith("default_cover.jpg") and self.cover.url != this_book.cover.url:
+                this_book.cover.delete(save=False)
+        except:
+            super().save()
 
-        super().save()
+            img = Image.open(self.cover.path)
 
-        img = Image.open(self.cover.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.cover.path)
+            if img.height > 300 or img.width > 300:
+                output_size = (300, 300)
+                img.thumbnail(output_size)
+                img.save(self.cover.path)

@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -43,3 +44,10 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
         if form.is_valid():
             form.save()
             return super().form_valid(form)
+
+
+class PasswordUpdateView(SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = PasswordChangeForm
+    success_url = ''
+    success_message = f'Password has been changed!'

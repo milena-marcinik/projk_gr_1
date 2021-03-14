@@ -1,17 +1,13 @@
-from django.contrib import messages
+import isbnlib
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core import paginator
-from django.db.models import Q
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse
 
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 from manage_library.filters import BookFilter
-from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfForm, BookUpdateForm
+from manage_library.forms import ShelfCreateForm, BookAddForm, BookChangeShelfForm, BookUpdateForm, BookAddISBNForm
 from manage_library.models import Room, Bookcase, Shelf, Book
-from django.core.paginator import Paginator
 
 
 class MainManageLibrary(ListView):
@@ -81,6 +77,17 @@ class BookAddView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
+class BookAddISBNView(SuccessMessageMixin, CreateView):
+    form_class = BookAddISBNForm
+    success_url = "/addnewbookisbn/"
+    success_message = "New book added to library"
+
+    # def form_valid(self, form):
+    #     if form.is_valid():
+    #         form.save()
+    #         return super().form_valid(form)
+
+
 class BookListView(ListView):
     model = Book
     context_object_name = 'books_all'
@@ -95,6 +102,7 @@ class BookListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         return BookFilter(self.request.GET, queryset=queryset).qs
+
 
 class BooksDeleteView(SuccessMessageMixin, DeleteView):
     model = Book

@@ -10,8 +10,8 @@
                 <div style="display: flex; flex-wrap: wrap; margin:-5px;">
                     {% for book in books_all|slice:":10" %}
                         <div style="flex: 1 1 300px; margin: 10px;">
-                            <img style="float: left; border: 1px solid #ddd; border-radius: 1px; padding: 4px; width: 100px"
-                                 src="{{ book.cover.url }}" alt="">
+                            <a href="{% url 'show-book-details' book.id %}"><img style="float: left; border: 1px solid #ddd; border-radius: 1px; padding: 4px; width: 100px"
+                                 src="{{ book.cover.url }}" alt=""></a>
                             <div style="text-align: left">
                                 <a href="{% url 'show-book-details' book.id %}"><i> {{ book.title }}</i></a>
                                 <br>
