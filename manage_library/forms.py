@@ -35,7 +35,7 @@ class BookAddISBNForm(ModelForm):
             title = isbn_handle['Title'],
             author=" ".join(isbn_handle['Authors']),
         )
-        super().save(*args, **kwargs)
+        # super().save(*args, **kwargs)
         return new_book
 
     # import isbnlib
